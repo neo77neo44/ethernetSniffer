@@ -1,0 +1,6 @@
+---- hex Matches (4 in 2 files) ----
+
+Main.c:char hex[2];
+Main.c:		//Print the hex value for every character , with a space. Important to make unsigned
+Main.c:			//print a big gap of 10 characters between hex and characters
+Sniffer.h:void ConvertToHex (char* , unsigned int);

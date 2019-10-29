@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1572318300 source:d:\ccode\ethersniffer\main.c
+	<windows.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<iphlpapi.h>
+	<stdio.h>
+	<string.h>
+	<time.h>
+	"sniffer.h"
+
+1572317329 d:\ccode\ethersniffer\sniffer.h
+	<WINSOCK2.H>
+	<stdio.h>
+	<string.h>
+	<time.h>
+
