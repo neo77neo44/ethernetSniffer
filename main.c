@@ -71,18 +71,29 @@ int main()
 	}
 	vcSnifPrintf("Enter the interface number you would like to sniff : ");
 	scanf("%d",&in);
-	
+
 	memset(&dest, 0, sizeof(dest));
 	memcpy(&dest.sin_addr.s_addr,local->h_addr_list[in],sizeof(dest.sin_addr.s_addr));
 	dest.sin_family = AF_INET;
 	dest.sin_port = 0;
 
 	vcSnifPrintf("Binding socket to local system and port 0 ...");
+	vcSnifPrintf("sAddr:%X",dest.sin_addr.s_addr);
 	if (bind(sniffer,(struct sockaddr *)&dest,sizeof(dest)) == SOCKET_ERROR){
 		vcSnifPrintf("bind(%s) failed.", inet_ntoa(addr));
 		return 1;
 	}
 	vcSnifPrintf("Binding successful");
+
+	j=1;
+	vcSnifPrintf("\nSetting socket to sniff...");
+	if (WSAIoctl(sniffer, SIO_RCVALL, &j, sizeof(j), 0, 0, (LPDWORD) &in , 0 , 0) == SOCKET_ERROR){
+		vcSnifPrintf("WSAIoctl() failed.");
+		return 1;
+	}
+
+	vcSnifPrintf("Socket set.");
+
 	StartSniffing(sniffer);
 	closesocket(sniffer);
 	WSACleanup();
